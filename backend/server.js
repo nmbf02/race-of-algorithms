@@ -36,27 +36,17 @@ app.get("/run-algorithms", (req, res) => {
         });
 
         process.on("close", (code) => {
-            try {
-                const outputTrimmed = output.trim();
-                if (!outputTrimmed) throw new Error(`Salida vacía para ${algo}`);
+            const [timeTaken, memoryUsed] = output.trim().split(",");
 
-                const [executionTime, comparisons, swaps] = outputTrimmed.split(",");
+            results.push({
+                algorithm: algo.replace(".py", ""),
+                time: parseFloat(timeTaken),
+                memory: parseFloat(memoryUsed) // Almacenamos la memoria utilizada
+            });
 
-                results.push({
-                    algorithm: algo.replace(".py", ""),
-                    executionTimes: executionTime ? parseFloat(executionTime) : "N/A",
-                    comparisons: comparisons ? parseInt(comparisons) : "N/A",
-                    swaps: swaps ? parseInt(swaps) : "N/A",
-                    color: getRandomColor()
-                });
-
-                completed++;
-                if (completed === algorithms.length) {
-                    console.log("✅ Datos enviados:", results);
-                    res.json(results);
-                }
-            } catch (error) {
-                console.error(`⚠️ Error procesando salida de ${algo}:`, error);
+            completed++;
+            if (completed === algorithms.length) {
+                res.json(results);
             }
         });
     });
