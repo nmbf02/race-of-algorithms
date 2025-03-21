@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 const AlgorithmResults = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [sortBy, setSortBy] = useState(null); // "time" o "memory"
+    const [ascending, setAscending] = useState(true);
 
     useEffect(() => {
         fetch("http://localhost:5000/run-algorithms")
@@ -17,13 +19,50 @@ const AlgorithmResults = () => {
             });
     }, []);
 
+    const handleSort = (criteria) => {
+        setSortBy(criteria);
+        setAscending(prevAscending => (sortBy === criteria ? !prevAscending : true));
+
+        const sortedData = [...data].sort((a, b) => {
+            if (criteria === "time") {
+                return ascending ? a.time - b.time : b.time - a.time;
+            } else if (criteria === "memory") {
+                return ascending ? a.memory - b.memory : b.memory - a.memory;
+            }
+            return 0;
+        });
+
+        setData(sortedData);
+    };
+
     if (loading) {
         return <p className="text-center text-lg font-semibold">Cargando...</p>;
     }
 
     return (
         <div className="max-w-4xl mx-auto mt-10">
-            <h2 className="text-2xl font-bold text-center mb-4">Resultados de Algoritmos</h2>
+
+            {/* Botones de Ordenamiento */}
+            <div className="flex justify-center gap-4 mb-4">
+                <button
+                    onClick={() => handleSort("time")}
+                    className={`px-4 py-2 rounded-md font-semibold shadow-md ${
+                        sortBy === "time" ? "bg-blue-600 text-white" : "bg-gray-300 text-black"
+                    }`}
+                >
+                    {ascending ? "↑" : "↓"} Ordenar por Tiempo
+                </button>
+                <button
+                    onClick={() => handleSort("memory")}
+                    className={`px-4 py-2 rounded-md font-semibold shadow-md ${
+                        sortBy === "memory" ? "bg-red-600 text-white" : "bg-gray-300 text-black"
+                    }`}
+                >
+                    {ascending ? "↑" : "↓"} Ordenar por Memoria
+                </button>
+            </div>
+
+            {/* Tabla de Resultados */}
             <table className="w-full border-collapse border border-gray-300">
                 <thead>
                 <tr className="bg-gray-200">

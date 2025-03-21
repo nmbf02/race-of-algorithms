@@ -6,9 +6,11 @@ Chart.register(...registerables);
 
 export default function AlgorithmRace() {
     const [selectedAlgorithms, setSelectedAlgorithms] = useState([
-        "Bubble Sort",
-        "Quick Sort",
-        "Merge Sort",
+        "Bubble sort",
+        "Quick sort",
+        "Insertion sort",
+        "Sequential search",
+        "Binary search"
     ]);
     const [dataSize, setDataSize] = useState(3000);
     const [dataType, setDataType] = useState("Random");
@@ -70,7 +72,7 @@ export default function AlgorithmRace() {
             <div className="mt-6 p-4 bg-gray-100 rounded-lg">
                 <h3 className="text-lg font-semibold">🏁 Configuración de la Carrera</h3>
                 <div className="flex flex-wrap gap-2 mt-3">
-                    {["Bubble Sort", "Quick Sort", "Merge Sort", "Heap Sort", "Insertion Sort"].map((algo) => (
+                    {["Binary Search","Bubble Sort","Insertion Sort","Quick Sort","Sequential Search"].map((algo) => (
                         <button
                             key={algo}
                             className={`px-3 py-1 rounded-full text-sm ${
