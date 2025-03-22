@@ -1,40 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🏁 Carrera de Algoritmos
 
-## Getting Started
+Este proyecto es una aplicación web que compara el rendimiento de distintos algoritmos de búsqueda y ordenamiento, midiendo el tiempo de ejecución y uso de memoria. Es ideal para visualizar y analizar la eficiencia de algoritmos con datos reales.
 
-First, run the development server:
+## 🧪 Tecnologías Utilizadas
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Frontend**: React (Next.js)
+- **Backend**: Node.js con Express
+- **Algoritmos**: Python
+- **Estilos**: TailwindCSS
+- **Gráficos**: Chart.js
+
+## 📁 Estructura del Proyecto
+
+```
+carrera-algoritmos/
+├── backend/
+│   ├── algorithms/          # Scripts Python con los algoritmos
+│   └── server.js            # Servidor Express
+├── public/
+├── src/
+│   ├── components/          # Componentes de React
+│   └── pages/               # Páginas de Next.js
+├── package.json
+├── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Cómo Ejecutar el Proyecto
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### 1. Clona el repositorio
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```bash
+git clone https://github.com/tuusuario/carrera-algoritmos.git
+cd carrera-algoritmos
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### 2. Instala dependencias
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Backend:**
 
-## Learn More
+```bash
+cd backend
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+**Frontend:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+```bash
+cd ..
+npm install
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3. Ejecuta el backend
 
-## Deploy on Vercel
+```bash
+cd backend
+node server.js
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Ejecuta el frontend
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+```bash
+cd ..
+npm run dev
+```
+
+## 🚀 Características
+
+- Simulación visual de algoritmos como Bubble Sort, Quick Sort, Insertion Sort, Binary Search y Sequential Search.
+- Comparación por tiempo y memoria.
+- Visualización en tiempo real tipo "carrera de carritos".
+
+## 🧠 Requisitos Previos
+
+- Node.js
+- Python 3.x
+- Dependencias listadas en `package.json`
+
+## Autor
+Nathaly Michel Berroa Fermín
